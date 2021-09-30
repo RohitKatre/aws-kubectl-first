@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  calculator:
+    build:
+      context: ./calculator
+      dockerfile: Dockerfile
+    environment:
+      - FLASK_APP=main
+
+  api:
+    build:
+      context: ./fast_api_app
+      dockerfile: Dockerfile
+    environment:
+      - CALCULATION_SERVICE_URL=calculator
+      - AWS_ACCESS_KEY_ID=AKIAUID72KDDVJ2WXAVL
+      - AWS_SECRET_ACCESS_KEY=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
+      - AWS_DEFAULT_REGION=us-east-1
+      - DB_TABLE=rk-employee_info
+    ports:
+      - 8000:8000
+    links:
+      - calculator

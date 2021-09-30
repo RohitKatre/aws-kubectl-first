@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: calculator-api-cluster-ip-service
+spec:
+  selector:
+    component: calculator-api
+  ports:
+    - port: 5000
+      targetPort: 5000

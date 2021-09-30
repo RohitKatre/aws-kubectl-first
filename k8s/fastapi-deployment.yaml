@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: fastapi
+  template:
+    metadata:
+      labels:
+        component: fastapi
+    spec:
+      containers:
+        - name: fastapi
+          image: rkatre/fastapi:v2
+          env:
+            - name: CALCULATION_SERVICE_URL
+              value: calculator-api-cluster-ip-service
+            - name: AWS_ACCESS_KEY_ID
+              value: AKIAUID72KDDVJ2WXAVL
+            - name: AWS_SECRET_ACCESS_KEY
+              value: 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
+            - name: AWS_DEFAULT_REGION
+              value: use-east-2
+            - name: DB_TABLE
+              value: rk-employee_info
+
