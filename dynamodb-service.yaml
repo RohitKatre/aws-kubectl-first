@@ -1,0 +1,21 @@
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: dynamodb
+#spec:
+#  type: ExternalName
+#  externalName: https://dynamodb.use-east-2.amazonaws.com
+
+apiVersion: service-operator.aws/v1alpha1
+kind: DynamoDB
+metadata:
+  name: dynamo-table
+spec:
+  hashAttribute:
+    name: name
+    type: S
+  rangeAttribute:
+    name: created_at
+    type: S
+  readCapacityUnits: 5
+  writeCapacityUnits: 5
