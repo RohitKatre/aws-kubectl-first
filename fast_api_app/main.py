@@ -14,8 +14,7 @@ CALCULATION_SERVICE_URL = "http://{}:5000".format(os.getenv('CALCULATION_SERVICE
 @app.get("/")
 def get_all_data_from_db() -> dict:
     try:
-        # data = get_all_item()
-        data = {}
+        data = get_all_item()
         return {'data': data, 'message': 'Data Retrieved', 'status': 200}
     except Exception as e:
         return {'err_message': 'Some thing went wrong. {}'.format(str(e)), 'status': 500}
@@ -24,11 +23,7 @@ def get_all_data_from_db() -> dict:
 @app.post("/create_data")
 def create_data_to_db(name: str, department: str) -> dict:
     try:
-        # r = db_put_item(name=name, department=department, details={})
-        r = {
-                "name": name,
-                "department": department,
-            }
+        r = db_put_item(name=name, department=department, details={})
         return {'status': 200, 'message': 'Data Saved', 'response': r}
     except Exception as e:
         return {'err_message': 'Some thing went wrong. {}'.format(str(e)), 'status': 500}
@@ -41,8 +36,7 @@ def create_data_to_db_with_compute(name: str, department: str, numbers: list) ->
             "numbers": numbers
         }))
         total = response.json()['sum']
-        # r = db_put_item(name=name, department=department, details={'sum': total})
-        r = {"addition": total}
+        r = db_put_item(name=name, department=department, details={'sum': total})
         return {'status': 200, 'message': 'Data Saved', 'response': r}
     except Exception as e:
         return {'err_message': 'Some thing went wrong. {}'.format(str(e)), 'status': 500}

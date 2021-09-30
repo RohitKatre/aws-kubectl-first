@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: calculator
-          image: rkatre/calculator:v1
+          image: rkatre/calculator:v2.1
           env:
             - name: FLASK_APP
               value: main

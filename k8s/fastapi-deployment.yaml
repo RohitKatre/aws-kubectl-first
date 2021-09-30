@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fastapi
-          image: rkatre/fastapi:v2
+          image: rkatre/fastapi:v2.1
           env:
             - name: CALCULATION_SERVICE_URL
               value: calculator-api-cluster-ip-service
